@@ -21,21 +21,23 @@ if __name__ == "__main__":
     confirmation = "x"
     for ty in (['train', 'validation']):
         if ty == 'train':
-            path = "../../dataset/labels/train/"  # update the path where the training labels txt files will be saved
+            # update the path where the training labels txt files will be saved
+            path = "../../dataset/labels/train/"
             f = open(train_json_path)
         else:
-            path = "../../dataset/labels/validation/"  # update the path where the validation labels txt files will be saved
+            # update the path where the validation labels txt files will be saved
+            path = "../../dataset/labels/validation/"
             f = open(valid_json_path)
 
         if os.path.isdir(path) and confirmation != "y":
-            confirmation = input("Path '%s" %path + "' already exists. Overwrite? (y/n)")
+            confirmation = input("Path '%s" %
+                                 path + "' already exists. Overwrite? (y/n)")
             if confirmation == "n":
                 break
         elif not os.path.isdir(path):
             os.mkdir(path)
 
-        print("Transforming %s" %ty, "labels!")
-
+        print("Transforming %s" % ty, "labels!")
 
         check_set = set()
         training_data = json.load(f)
